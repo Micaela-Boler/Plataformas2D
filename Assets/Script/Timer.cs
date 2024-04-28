@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    /*
+
     [SerializeField] float tiempoMaximo = 120f;
     [SerializeField] float tiempoActual;
     [SerializeField] bool activadoTiempo;
     [SerializeField] Slider slider;
 
-    public Manager manager;
+    public GameManager manager;
 
 
 
@@ -38,9 +39,25 @@ public class Timer : MonoBehaviour
 
         if (tiempoActual <= 0)
         {
-            manager.ChangeScene(3);
+           //Perder    manager.ChangeScene(3);
             EstadoDeTimer(false);
         }
     }
-    */
+
+
+
+    void Activar()
+    {
+        tiempoActual = tiempoMaximo;
+        slider.maxValue = tiempoMaximo;
+
+        EstadoDeTimer(true);
+    }
+
+
+    public void EstadoDeTimer(bool estado)
+    {
+        activadoTiempo = estado;
+    }
+
 }

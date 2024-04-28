@@ -35,7 +35,7 @@ public class Enemigo : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = new Vector3 (velocidad, rb.velocity.y , 0);
+        rb.velocity = new Vector3 (-velocidad, rb.velocity.y , 0);
 
         // vector de origen ( donde empieza el raycast) - transform= la direccionn (ene este caso la derecha) - float, la distancia que debe de recorrer - LayerMask, la capa que tiene que detectar
         //Usamos raycast para detectar la colision con las paredes o limites

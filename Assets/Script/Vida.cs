@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Vida : MonoBehaviour
@@ -50,5 +51,12 @@ public class Vida : MonoBehaviour
 
         jugador.puedeMoverse = true;
 
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstaculo"))
+            gameManager.CambiarEscena(0);
     }
 }

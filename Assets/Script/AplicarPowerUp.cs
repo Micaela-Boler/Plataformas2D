@@ -11,13 +11,6 @@ public class AplicarPowerUp : MonoBehaviour
 
 
 
-    private void Start()
-    {
-        particulas.Stop();
-    }
-
-
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Jugador"))

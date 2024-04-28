@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Jugador : MonoBehaviour
 {
-    public GameManager manager;
-
+    [SerializeField] Animator animator;
+    [SerializeField] ParticleSystem particulas;
+    
     [Header("Movimiento")]
 
     private float horizontalInput;
@@ -32,8 +33,8 @@ public class Jugador : MonoBehaviour
     private void Start()
     {
         puedeMoverse = true;
+        particulas.Stop();
     }
-
 
 
     void Update()
@@ -41,15 +42,23 @@ public class Jugador : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         verticalInput = Input.GetAxis("Vertical");
 
-        vectorMovement = new Vector3(horizontalInput, 0, verticalInput);
+        vectorMovement = new Vector3(-verticalInput, 0, horizontalInput);
         vectorMovement.Normalize();
 
+
         if (puedeMoverse == true)
+        {
             transform.Translate(vectorMovement * Time.deltaTime * speed);
 
+            animator.SetFloat("Corriendo", Mathf.Abs(horizontalInput));
+        }
 
-        if (saltando && Input.GetButtonDown("Jump") || cantidadDeSaltos > 0 && Input.GetButtonDown("Jump") )
+
+
+        if (saltando && Input.GetButtonDown("Jump") || cantidadDeSaltos > 0 && Input.GetButtonDown("Jump"))
             Saltar();
+        else
+            animator.SetBool("Saltando", false);
     }
 
 
@@ -58,13 +67,11 @@ public class Jugador : MonoBehaviour
     {
         _rb.AddForce(new Vector3(0, fuerzaDeSalto, 0), ForceMode.Impulse);
 
+
         saltando = false;
         cantidadDeSaltos -= 1;
-
-
-        //en el script de power up agregar un salto ( cantidad de salto += 1;)
+        animator.SetBool("Saltando", true);
     }
-
 
     public void Rebote(Vector2 puntoDeGolpe)
     {
@@ -79,17 +86,10 @@ public class Jugador : MonoBehaviour
         {
             saltando = true;
             cantidadDeSaltos += 1;
-        }
+            particulas.Play();
+        } 
+        else
+            particulas.Stop();
     }
-
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Coleccionable"))
-        manager.Coleccionables();
-        //Activar particulas
-    }
-
 }
 

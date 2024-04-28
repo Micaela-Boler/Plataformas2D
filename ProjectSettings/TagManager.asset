@@ -6,8 +6,9 @@ TagManager:
   tags:
   - Piso
   - Enemigo
-  - Coleccionable
   - Jugador
+  - Coleccionables
+  - Obstaculo
   layers:
   - Default
   - TransparentFX
