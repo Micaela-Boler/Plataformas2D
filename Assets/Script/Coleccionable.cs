@@ -5,6 +5,7 @@ using UnityEngine;
 public class Coleccionable : MonoBehaviour
 {
     [SerializeField] ParticleSystem particulas;
+    [SerializeField] AudioSource audio;
 
     public GameManager manager;
 
@@ -16,6 +17,7 @@ public class Coleccionable : MonoBehaviour
         {
             manager.Coleccionables();
             particulas.Play();
+            audio.Play();
 
             Destroy(gameObject, 0.5f);
         }

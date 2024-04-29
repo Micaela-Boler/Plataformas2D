@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Timer timer;
+    
     [SerializeField] List <GameObject> corazones = new List <GameObject> ();
     [SerializeField] Sprite corazonDesactivado;
 
@@ -33,8 +35,10 @@ public class GameManager : MonoBehaviour
         textoPuntaje.text = puntos.ToString() + "/" + cantidadDeColeccionables.ToString();
 
         if (puntos == cantidadDeColeccionables)
+        {
             pantalla.SetActive(true);
-        
+            timer.EstadoDeTimer(false);
+        }
     }
 
 

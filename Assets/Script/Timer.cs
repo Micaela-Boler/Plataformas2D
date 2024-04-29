@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
 
-    [SerializeField] float tiempoMaximo = 120f;
+    [SerializeField] float tiempoMaximo = 500f;
     [SerializeField] float tiempoActual;
     [SerializeField] bool activadoTiempo;
     [SerializeField] Slider slider;
@@ -31,7 +31,7 @@ public class Timer : MonoBehaviour
 
     void CambiarTimer()
     {
-        tiempoActual -= Time.deltaTime;
+        tiempoActual -= Time.deltaTime * 10;
 
 
         if (tiempoActual >= 0)
@@ -39,7 +39,7 @@ public class Timer : MonoBehaviour
 
         if (tiempoActual <= 0)
         {
-           //Perder    manager.ChangeScene(3);
+            manager.CambiarEscena(0);
             EstadoDeTimer(false);
         }
     }

@@ -33,7 +33,6 @@ public class Jugador : MonoBehaviour
     private void Start()
     {
         puedeMoverse = true;
-        particulas.Stop();
     }
 
 
@@ -86,10 +85,7 @@ public class Jugador : MonoBehaviour
         {
             saltando = true;
             cantidadDeSaltos += 1;
-            particulas.Play();
         } 
-        else
-            particulas.Stop();
     }
 }
 

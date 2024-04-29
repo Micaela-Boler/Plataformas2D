@@ -6,8 +6,8 @@ public class AplicarPowerUp : MonoBehaviour
 {
     public PowerUp powerUp;
 
-    [SerializeField] AudioSource audio;
     [SerializeField] ParticleSystem particulas;
+    [SerializeField] AudioSource audio;
 
 
 

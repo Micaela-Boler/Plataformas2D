@@ -5,22 +5,16 @@ using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-    //[SerializeField] ParticleSystem particulas;
-
     private int vida = 3;
 
     public GameManager gameManager;
 
     [Header("Rebote")]
-    public Jugador jugador;
+
     [SerializeField] float tiempo;
-
-
-
-    void Start()
-    {
-        //particulas.Stop();
-    }
+    [SerializeField] Animator animator;
+    [SerializeField] AudioSource audio;
+    public Jugador jugador;
 
 
 
@@ -29,12 +23,12 @@ public class Vida : MonoBehaviour
         if (vida > 0)
         {
             vida -= daño;
-            //particulas.Play();
-            // trigger para la animacion
+            audio.Play();
             gameManager.CambiarCorazon(vida);
 
+
             if (vida <= 0)
-                Debug.Log("Sin vidas");
+                gameManager.CambiarEscena(0);
         }
 
         StartCoroutine(PerderControl());
@@ -46,10 +40,12 @@ public class Vida : MonoBehaviour
     IEnumerator PerderControl()
     {
         jugador.puedeMoverse = false;
+        animator.SetBool("RecibiendoDaño", true);
 
         yield return new WaitForSeconds(tiempo);
 
         jugador.puedeMoverse = true;
+        animator.SetBool("RecibiendoDaño", false);
 
     }
 
